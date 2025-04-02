@@ -1,0 +1,1 @@
+// https://hackernoon.com/how-to-launch-your-own-production-ready-cryptocurrency-ab97cb773371

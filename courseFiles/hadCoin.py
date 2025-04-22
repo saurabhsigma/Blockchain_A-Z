@@ -1,12 +1,16 @@
-# Module 1 - Create a Blockchain
+# Module 2 - Create a cryptocurrency 
 # to be installed 
 # flask , python and some kind of postman service
+# requests==2.18.4; pip install requests==2.18.4
 
 # importing the libraries
 import datetime
 import hashlib
 import json
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
+import requests
+from uuid import uuid4
+from urllib.parse import urlparse
 
 # Part 1 - Building a Blockchain
 
@@ -93,3 +97,17 @@ def get_chain():
     response = {'chain':blockchain.chain,
                 'length': len(blockchain.chain)}
     return jsonify(response), 200
+
+@app.route('/is_valid', methods = ['GET'])
+def is_valid():
+    is_valid = blockchain.is_chain_valid(blockchain.chain)
+    if is_valid :
+        response =  {'message': 'All good. The Blockchain is valid.'}
+    else:
+        response = {'message' : "Houstan, we have a problem. The blockchain is not valid."}
+    return jsonify(response), 200
+
+# part 3 = Decentralizing our blockchain
+
+# Running the app
+app.run(host = '0.0.0.0', port = 4000)
